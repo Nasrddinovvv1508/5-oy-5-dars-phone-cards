@@ -18,16 +18,18 @@ button.forEach((v) => {
         phoneDesc.style.display = `block`;
         id = this.parentNode.parentNode.firstChild.firstChild.textContent;
 
+        if (phoneDesc.children.length != 0) {
+            phoneDesc.innerHTML = ``;
+        }
+
         data.forEach((product) => {
             if (product.id == id) {
                 createDiv(product);
             }
         })
-        phoneDescL = phoneDesc.children.length;
         console.log(phoneDescL);
     });
 })
-console.log(phoneDescL);
 
 // if (!phoneDesc.children) {
 //     console.log(true);
