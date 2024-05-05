@@ -8,16 +8,68 @@
     <link rel="stylesheet" href="./static/styles/normalize.css">
     <link rel="stylesheet" href="./static/styles/fonts.css">
     <link rel="stylesheet" href="./static/styles/style.css">
-    <title>Online Shop | Phones</title>
+    <title>Online Shop | Products</title>
+    <style>
+        .star-rating {
+            font-size: 35px;
+            /* Yulduzchalar o'lchami */
+            color: lightgray;
+            /* Default rang */
+            display: flex;
+        }
+
+        .star {
+            cursor: pointer;
+            /* Hover effekti uchun */
+            transition: color 0.3s;
+            /* Rang o'zgarishida yumshoq o'tish */
+        }
+
+        .star.filled {
+            color: gold;
+            /* Yulduzcha to'liq bo'yalgan holatda */
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="container">
-        <div class="phone_cards">
+        <div class="wrapper">
+            <div class="phone_cards">
+            </div>
+
+            <div class="phone_description">
+                <!-- <h1>Hello</h1> -->
+            </div>
         </div>
     </div>
 
+
     <script type="module" src="./static/JS/index.js"></script>
+    <script>
+        function updateStarRating(rating) {
+            const stars = document.querySelectorAll('.star-rating .star');
+
+            stars.forEach(star => {
+                const starValue = parseInt(star.getAttribute('data-value'));
+                if (starValue <= rating) {
+                    star.classList.add('filled'); // Yulduzchani bo'yash
+                } else {
+                    star.classList.remove('filled'); // Yulduzchani bo'yamaslik
+                }
+            });
+        }
+
+        updateStarRating(4);
+
+        document.querySelectorAll('.star-rating .star').forEach(star => {
+            star.addEventListener('click', () => {
+                const value = parseInt(star.getAttribute('data-value'));
+                updateStarRating(value);
+            });
+        });
+    </script>
 </body>
+
 </html>
